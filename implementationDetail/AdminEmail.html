@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Administrator Send Email &mdash; PurdueCAM2Project/CAM2WebUI 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PurdueCAM2Project/CAM2WebUI 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="User Email Confirmation" href="emailConfirmation.html"/>
+        <link rel="prev" title="Google Fusion Table" href="GoogleFusionTable.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PurdueCAM2Project/CAM2WebUI
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Basic Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/git.html">Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/localsite.html">Viewing Website Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/selenium.html">Selenium Test Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/sphinx.html">Sphinx-generated Github Page</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation Details</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="User.html">User</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth.html">User Third party login</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GoogleFusionTable.html">Google Fusion Table</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Administrator Send Email</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#goal">Goal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#approach">Approach</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="emailConfirmation.html">User Email Confirmation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ContactUs.html">Contact Us</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Test Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../test/test.html">Django Selenium test</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PurdueCAM2Project/CAM2WebUI</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Administrator Send Email</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/implementationDetail/AdminEmail.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="administrator-send-email">
+<span id="administrator-send-email"></span><h1>Administrator Send Email<a class="headerlink" href="#administrator-send-email" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="goal">
+<span id="goal"></span><h2>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
+<p>Allow admin to send email to specific users.
+procedure:
+Log in as admin, and in the main page, go to <code class="docutils literal"><span class="pre">Users</span></code>， click the checkbox to choose recipient and select <code class="docutils literal"><span class="pre">Email</span> <span class="pre">Users</span></code>, then click <code class="docutils literal"><span class="pre">Go</span></code> to go to a web page that admin can type in subject and message.</p>
+</div>
+<div class="section" id="approach">
+<span id="approach"></span><h2>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="decorator">
+<span id="decorator"></span><h3>decorator<a class="headerlink" href="#decorator" title="Permalink to this headline">¶</a></h3>
+<p>To make sure only admin can use this view, we need to add a django decorator <code class="docutils literal"><span class="pre">&#64;staff_member_required</span></code> before our function.</p>
+</div>
+<div class="section" id="admin-action">
+<span id="admin-action"></span><h3>Admin action<a class="headerlink" href="#admin-action" title="Permalink to this headline">¶</a></h3>
+<p>We will add a new action to User admin called <code class="docutils literal"><span class="pre">email</span> <span class="pre">user</span></code> to redirect the page to our <code class="docutils literal"><span class="pre">admin_send_email</span></code> page, and pass the email of selected user to the email input in <code class="docutils literal"><span class="pre">admin_send_email</span></code> page.</p>
+<p>In <code class="docutils literal"><span class="pre">app/admin.py</span></code>
+First we write the action. An admin action takes 3 parameters, self, request and queryset.
+The queryset contains every user object we selected under User admin page.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">email_users</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
+    <span class="n">email_selected</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="n">email_selected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Since we want to automatically put the email of selected users to the input of admin_send_email page, we want to make it look pretty so that the email field in admin_send_email page can read the email.</p>
+<p>Therefore we get the email and append them into a list, make it a string and remove the redundant brackets and empty value.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">email_selected</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">email_selected</span><span class="p">)</span>
+<span class="c1"># remove empty email</span>
+<span class="n">email_selected</span> <span class="o">=</span> <span class="n">email_selected</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(</span><span class="se">\&#39;\&#39;</span><span class="s1">,),&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1"># remove redundant char</span>
+<span class="n">email_selected</span> <span class="o">=</span> <span class="n">email_selected</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">,)&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>At last we will use a <code class="docutils literal"><span class="pre">session</span></code> to pass the <code class="docutils literal"><span class="pre">email_selected</span></code>. And then, redirect admin to admin_send_email page</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#open a session and render the email_selected to admin_send_email view</span>
+<span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;email_selected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">email_selected</span>
+<span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;admin_send_email&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After completing the action, We need to redefine a <code class="docutils literal"><span class="pre">UserAdmin</span></code> to add the action. In list_display, we choose the field we want to see in admin page.
+And add the action to <code class="docutils literal"><span class="pre">actions</span></code> :</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;first_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;last_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;is_staff&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;date_joined&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="n">email_users</span><span class="p">]</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">unregister</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">UserAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>At last we need to unregister the User model because it is registered by default, and then reregister it with our<code class="docutils literal"><span class="pre">UserAdmin</span></code> class.</p>
+</div>
+<div class="section" id="send-email-page">
+<span id="send-email-page"></span><h3>Send Email Page<a class="headerlink" href="#send-email-page" title="Permalink to this headline">¶</a></h3>
+<p>we use a form to obtain the subject, message and email:</p>
+<p>In `forms.py&#8217;:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="kn">from</span> <span class="nn">django</span> <span class="k">import</span> <span class="n">forms</span>
+    <span class="kn">from</span> <span class="nn">django.core.validators</span> <span class="k">import</span> <span class="n">validate_email</span>
+    
+    <span class="k">class</span> <span class="nc">MailForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">MultiEmailField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="s1">&#39;Split email by &quot; ,  &quot; or &quot; ; &quot;, or copy paste a list from below&#39;</span><span class="p">)</span>
+        <span class="n">email_all_users</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">subject</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Since we want to send email to more than one address, we need to define a field that accepts multiple email addresses.</p>
+<p>Before <code class="docutils literal"><span class="pre">Mailform</span></code>, add:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="k">class</span> <span class="nc">MultiEmailField</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Field</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[]</span>
+            <span class="c1">#Modify the input so that email can be split by , and ;</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> 
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">value</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">value</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#remove the last &#39;,&#39; or &#39;;&#39;</span>
+
+            <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;Check if value consists only of valid emails.&quot;&quot;&quot;</span>
+            <span class="c1"># Use the parent&#39;s handling of required fields, etc.</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">MultiEmailField</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">validate_email</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The MultiEmailField will accept a list of email addresses that is split by <code class="docutils literal"><span class="pre">,</span></code> or <code class="docutils literal"><span class="pre">;</span></code> aas well as a list copy and paste from the user info table that we will create later.</p>
+<p>Now go to <code class="docutils literal"><span class="pre">views.py</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@staff_member_required</span>
+<span class="k">def</span> <span class="nf">admin_send_email</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">MailForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="c1">#email specific users</span>
+            <span class="n">subject</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">]</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span>
+            <span class="n">email</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
+            <span class="n">email_all_users</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;email_all_users&#39;</span><span class="p">]</span> <span class="c1">#option for email all users</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">email_all_users</span><span class="p">:</span> <span class="c1">#if ture, send email to all users</span>
+                    <span class="n">current_site</span> <span class="o">=</span> <span class="n">get_current_site</span><span class="p">(</span><span class="n">request</span><span class="p">)</span><span class="c1">#will be used in templates</span>
+                    <span class="n">all_users</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="c1">#For iteration of email all users</span>
+                    <span class="n">mass_email</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="c1">#iterations that add users info to each email and attach to mass_email list</span>
+                    <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">all_users</span><span class="p">:</span> 
+                        <span class="n">username</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span>
+                        <span class="n">template</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s1">&#39;email_system/admin_send_email_template.html&#39;</span><span class="p">,</span> <span class="p">{</span>
+                            <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+                            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span>
+                            <span class="s1">&#39;domain&#39;</span><span class="p">:</span> <span class="n">current_site</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
+                        <span class="p">})</span>
+                        <span class="n">mass_email</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
+                            <span class="n">subject</span><span class="p">,</span>
+                            <span class="n">template</span><span class="p">,</span>
+                            <span class="n">EMAIL_HOST_USER</span><span class="p">,</span>
+                            <span class="p">[</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">],</span>
+                        <span class="p">))</span>
+
+                    <span class="n">send_mass_mail</span><span class="p">(</span><span class="n">mass_email</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span> <span class="c1">#if email_all_users is not true, send email to address that the admin typed in</span>
+                    <span class="n">send_mail</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="n">EMAIL_HOST_USER</span><span class="p">,</span><span class="n">email</span><span class="p">)</span>
+
+                <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;Email successfully sent.&#39;</span><span class="p">)</span><span class="c1">#success message</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;Email sent failed.&#39;</span><span class="p">)</span><span class="c1">#error message</span>
+
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;admin_send_email&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;Email sent failed.&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">MailForm</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;email_system/admin_send_email.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>There are two ways of sending email: send_mail and send_mass_mail. send_mass_mail will not close the channel of sending email after each email es sent, so it is slightly faster when sending a lot of email.</p>
+<p>We also used a template here for email_all_users since it is nice to have signiture for an official email:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Hi</span> <span class="p">{{</span> <span class="n">username</span> <span class="p">}},</span>
+<span class="p">{{</span> <span class="n">message</span> <span class="p">}}</span>
+
+
+
+<span class="n">Sincerely</span><span class="p">,</span>
+<span class="n">CAM2</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="p">{{</span> <span class="n">domain</span> <span class="p">}}</span>
+</pre></div>
+</div>
+<p>For the convenience of administrator, it is good to have a table of all users&#8217; info.
+To obtain them, we will use <code class="docutils literal"><span class="pre">objects.values</span></code> and <code class="docutils literal"><span class="pre">objects.values_list</span></code>. The <code class="docutils literal"><span class="pre">objects.values</span></code> will collect the names of each aspact of info, however, <code class="docutils literal"><span class="pre">objects.values_list</span></code> will only contain the info itself.</p>
+<p>Right after <code class="docutils literal"><span class="pre">def</span> <span class="pre">admin_send_email(request):</span></code> and before <code class="docutils literal"><span class="pre">if</span> <span class="pre">request.method</span> <span class="pre">==</span> <span class="pre">'POST':</span></code>, add the following to get user info:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">email_table</span> <span class="o">=</span> <span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">))</span> <span class="c1">#Obtaining a list of users&#39; emails outside users info table for easy copying and pasting.</span>
+<span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;date_joined&#39;</span><span class="p">)</span> <span class="c1">#Obtaining a list of info required from user</span>
+</pre></div>
+</div>
+<p>and add this two list in <code class="docutils literal"><span class="pre">return</span> <span class="pre">render()</span></code> in the end:
+return render(request, &#8216;email_system/admin_send_email.html&#8217;, {&#8216;form&#8217;: form, &#8216;users&#8217;: users, &#8216;email_table&#8217;: email_table})</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="emailConfirmation.html" class="btn btn-neutral float-right" title="User Email Confirmation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="GoogleFusionTable.html" class="btn btn-neutral" title="Google Fusion Table" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Purdue CAM2 Project Developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

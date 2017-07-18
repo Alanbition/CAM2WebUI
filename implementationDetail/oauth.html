@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>User Third party login &mdash; PurdueCAM2Project/CAM2WebUI 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PurdueCAM2Project/CAM2WebUI 1.0 documentation" href="../index.html"/>
+        <link rel="next" title="Google Fusion Table" href="GoogleFusionTable.html"/>
+        <link rel="prev" title="User" href="User.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PurdueCAM2Project/CAM2WebUI
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Basic Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/git.html">Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/heroku.html">Heroku</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/localsite.html">Viewing Website Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/selenium.html">Selenium Test Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basicSetup/sphinx.html">Sphinx-generated Github Page</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation Details</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="User.html">User</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Third party login</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-authentication">GitHub Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#google-authentication">Google Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-url-in-page">Add url in page</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="GoogleFusionTable.html">Google Fusion Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AdminEmail.html">Administrator Send Email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emailConfirmation.html">User Email Confirmation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ContactUs.html">Contact Us</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Test Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../test/test.html">Django Selenium test</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PurdueCAM2Project/CAM2WebUI</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>User Third party login</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/implementationDetail/oauth.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="user-third-party-login">
+<span id="user-third-party-login"></span><h1>User Third party login<a class="headerlink" href="#user-third-party-login" title="Permalink to this headline">¶</a></h1>
+<p>This page will walk you through some guides on writing third party login including google login and github login on the login page.</p>
+<div class="section" id="installation">
+<span id="installation"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>For the django third party login, there is a django app called social-auth-app-django already built for us. So we can simply download this library to make third party login easier to build. We can use python pip to install the app.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">social</span><span class="o">-</span><span class="n">auth</span><span class="o">-</span><span class="n">app</span><span class="o">-</span><span class="n">django</span>
+</pre></div>
+</div>
+<p>Then visit settings.py in our app and include that in the installed apps:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;app.apps.AppConfig&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;widget_tweaks&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_django&#39;</span><span class="p">,</span> <span class="c1"># &lt;---- Add this one</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>After you save the settings.py. Go to terminal and migrate the database.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration">
+<span id="configuration"></span><h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Back to the settings.py, we have several more things to modify.</p>
+<p>The first one is Middleware, we need to add one more thing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>
+<span class="n">MIDDLEWARE</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;app.middleware.basicauth.BasicAuthMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;whitenoise.middleware.WhiteNoiseMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.security.SecurityMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sessions.middleware.SessionMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.common.CommonMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.csrf.CsrfViewMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.auth.middleware.AuthenticationMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.messages.middleware.MessageMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.middleware.clickjacking.XFrameOptionsMiddleware&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_django.middleware.SocialAuthExceptionMiddleware&#39;</span><span class="p">,</span>    <span class="c1"># &lt;--- Add this one</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Then we need to update the template in setting.py:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>
+<span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django.template.backends.django.DjangoTemplates&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;DIRS&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;APP_DIRS&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;context_processors&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s1">&#39;django.template.context_processors.debug&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.template.context_processors.request&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.contrib.auth.context_processors.auth&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;django.contrib.messages.context_processors.messages&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;social_django.context_processors.backends&#39;</span><span class="p">,</span>                <span class="c1"># &lt;--- Add this one</span>
+                <span class="s1">&#39;social_django.context_processors.login_redirect&#39;</span><span class="p">,</span>          <span class="c1"># &lt;--- Add this one</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Next we will add authentication backend in settings, since we need google and github login, we add github oauth and google oauth. If you would like to add something like facebook login, you can add &#8216;social_core.backends.facebook.FacebookOAuth2&#8217; in this model backend if you want.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>
+<span class="n">AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;social_core.backends.github.GithubOAuth2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;social_core.backends.google.GoogleOAuth2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.auth.backends.ModelBackend&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s set the default values for the LOGIN_URL, LOGOUT_URL and the LOGIN_REDIRECT_URL. The LOGIN_REDIRECT_URL will be used to redirect the user after authenticating from Django Login and Social Auth.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">LOGIN_URL</span> <span class="o">=</span> <span class="s1">&#39;login&#39;</span>
+<span class="n">LOGOUT_URL</span> <span class="o">=</span> <span class="s1">&#39;logout&#39;</span>
+<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;home&#39;</span>
+
+<span class="n">SOCIAL_AUTH_LOGIN_ERROR_URL</span> <span class="o">=</span> <span class="s1">&#39;/register/&#39;</span>
+<span class="n">SOCIAL_AUTH_LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;/oauthinfo/&#39;</span>
+<span class="n">SOCIAL_AUTH_RAISE_EXCEPTIONS</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Update the urls.py add the social-auth-app-django urls:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^oauth/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;social_django.urls&#39;</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;social&#39;</span><span class="p">)),</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="github-authentication">
+<span id="github-authentication"></span><h2>GitHub Authentication<a class="headerlink" href="#github-authentication" title="Permalink to this headline">¶</a></h2>
+<p>Log in to your GitHub account, go to Settings. In the left menu you will see Developer settings. Click on OAuth applications.</p>
+<p>In the OAuth applications screen click on Register a new application.</p>
+<p>Fill in the form with any name, url or description. The only important one is Authorization callback URL:</p>
+<p>Notice that I’m putting a localhost URL. <strong>http://localhost:8000/oauth/complete/github/. You must use this url to accomplish oauth login for github.</strong></p>
+<p>After you create the app, you can get:</p>
+<ul class="simple">
+<li>client id</li>
+<li>client secret</li>
+</ul>
+<p>Copy and paste those items and send them into the environment. Don&#8217;t make it public!!</p>
+<p>Then in settings.py, add two varialbes called &#8216;SOCIAL_AUTH_GITHUB_KEY&#8217; and &#8216;SOCIAL_AUTH_GITHUB_SECRET&#8217;</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SOCIAL_AUTH_GITHUB_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GITHUB_KEY&#39;</span><span class="p">]</span>
+<span class="n">SOCIAL_AUTH_GITHUB_SECRET</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GITHUB_SECRET&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Settings for github login is finished!</p>
+</div>
+<div class="section" id="google-authentication">
+<span id="google-authentication"></span><h2>Google Authentication<a class="headerlink" href="#google-authentication" title="Permalink to this headline">¶</a></h2>
+<p>For google authentication, it is similar to github authentication. This time we need to acquire google credentials.</p>
+<p>Visit <a class="reference external" href="https://console.developers.google.com/apis/credentials">https://console.developers.google.com/apis/credentials</a></p>
+<p>Click on &#8216;create credentials&#8217; -&gt; &#8216;oauth client id&#8217; -&gt; &#8216;web application&#8217; -&gt; Fill in the form</p>
+<p>The same as before, the only important one is Authorized redirect URIs:</p>
+<p>Notice that I’m putting a localhost URL. <strong>http://localhost:8000/oauth/complete/google-oauth2/. You must use this url to accomplish oauth login for google.</strong></p>
+<p>After you create the app, you can get:</p>
+<ul class="simple">
+<li>client id</li>
+<li>client secret</li>
+</ul>
+<p>Copy and paste those items and send them into the environment. Don&#8217;t make it public!!</p>
+<p>Then in settings.py, add two varialbes called &#8216;SOCIAL_AUTH_GOOGLE_OAUTH2_KEY&#8217; and &#8216;SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET&#8217;</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SOCIAL_AUTH_GOOGLE_OAUTH2_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GOOGLE_LOGIN_KEY&#39;</span><span class="p">]</span>
+<span class="n">SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;GOOGLE_LOGIN_SECRET&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Google oauth has one more step than github login. If you just finish this step, you will still get an error. You need to enable Google+ API</p>
+<p>On the same page left side, choose &#8216;library&#8217;, in Social APIs column choose Google+ API: click on enable to enable google+ API.</p>
+</div>
+<div class="section" id="add-url-in-page">
+<span id="add-url-in-page"></span><h2>Add url in page<a class="headerlink" href="#add-url-in-page" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;social-login&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">h4</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;color:black;text-align:center;&quot;</span><span class="o">&gt;-</span> <span class="ow">or</span> <span class="o">-&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;social-login-buttons&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">a</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;btn btn-block btn-social btn-lg btn-github&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;github_login&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;xxx&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;fa fa-github&quot;</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span><span class="n">Sign</span> <span class="ow">in</span> <span class="k">with</span> <span class="n">Github</span>
+  <span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">a</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;btn btn-block btn-social btn-lg btn-google&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;xxx&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;fa fa-google&quot;</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="n">Login</span> <span class="k">with</span> <span class="n">Google</span>
+  <span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Now you can try to login with github and google!</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="GoogleFusionTable.html" class="btn btn-neutral float-right" title="Google Fusion Table" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="User.html" class="btn btn-neutral" title="User" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Purdue CAM2 Project Developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
